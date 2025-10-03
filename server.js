@@ -4,7 +4,6 @@ const express = require("express");
 const fs = require("fs");
 // frontend va backend portlarda ishlaganda, ular o‘zaro gaplasha olishi uchun ishlatiladigan middleware
 const cors = require("cors");
-app.use(cors());
 
 
 // (asosiy server obyekt).
