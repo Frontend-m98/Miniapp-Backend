@@ -17,7 +17,7 @@ const allowedOrigins = [
   "https://miniapp-frontend.netlify.app"
 ];
 
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -25,23 +25,10 @@ app.use(cors({
       callback(new Error("CORS blocked for this origin: " + origin));
     }
   },
-  methods: "GET, POST, PUT, DELETE",
+  methods: "GET,POST,PUT,DELETE",
   credentials: true
-}));
-
-// Angular brawser port http://localhost:4200
-const corsOptions = {
-  origin: ["http://localhost:4200", "https://miniapp-frontend.netlify.app"],
-  optionsSuccessStatus: 204, // (No Content)
-  // GET    - ma’lumot olish
-  // POST   - ma’lumot yuborish
-  // PUT    - ma’lumotni yangilash
-  // DELETE - ma’lumotni o‘chirish
-  methods: "GET, POST, PUT, DELETE",
 };
 
-
-// frontenddan so‘rov kelishini ruxsat qiladi.
 app.use(cors(corsOptions));
 // req.body orqali JSON ma’lumotlarini o‘qiy oladi.
 app.use(express.json());
