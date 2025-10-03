@@ -14,7 +14,7 @@ const port = 3000;
 
 // Angular brawser port http://localhost:4200
 const corsOptions = {
-  origin: "http://localhost:4200",
+  origin: ["http://localhost:4200", "https://miniapp-frontend.netlify.app"],
   optionsSuccessStatus: 204, // (No Content)
   // GET    - ma’lumot olish
   // POST   - ma’lumot yuborish
@@ -168,7 +168,7 @@ app.put("/clothes/:id", (req, res) => {
 
 // DELETE - ma’lumotni o‘chirish
 app.delete("/clothes/:id", (req, res) => {
-// :id - dinamik parametr, qaysi elementni o‘chirish kerakligini bildiradi.
+  // :id - dinamik parametr, qaysi elementni o‘chirish kerakligini bildiradi.
 
   const id = parseInt(req.params.id);
 
