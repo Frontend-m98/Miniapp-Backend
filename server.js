@@ -9,8 +9,25 @@ const cors = require("cors");
 // (asosiy server obyekt).
 const app = express();
 // serverni qaysi portda ishga tushirishni belgilaydi
-const port = 3000;
+const port = process.env.PORT || 3000;
 
+
+const allowedOrigins = [
+  "http://localhost:4200",
+  "https://miniapp-frontend.netlify.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS blocked for this origin: " + origin));
+    }
+  },
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true
+}));
 
 // Angular brawser port http://localhost:4200
 const corsOptions = {
